@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=prueba
+      - DB_HOST=127.0.0.1
+      - MYSQL_ROOT_PASSWORD=secret
+    ports:
+      - '33080:3380'
+    volumes:
+    
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+  
